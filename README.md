@@ -39,5 +39,25 @@ print(training_._dataset.class_to_idx)
     'vehicles 1': 18,
     'vehicles 2': 19
 }
+```
+
+The following transfrom class provides the same feature above:
 
 ```
+import numpy as np
+
+from coarse_cifar100 import TransformCIFAR100TOCoarseCIFAR100
+
+
+training_dataset = CIFAR100(root="~/pytorch_dataset/", download=True)
+validation_dataset = CIFAR100(root="~/pytorch_dataset/", download=True, train=False)
+
+num_fine_classes_per_coarse_class = 5
+
+coarse2fine = TransformCIFAR100TOCoarseCIFAR100(num_fine_classes_per_coarse_class)
+
+training_dataset = coarse2fine.fit_transform(training_dataset)
+validation_dataset = coarse2fine.fit_transform(validation_dataset)
+```
+
+This transform class might be useful when you want to reduce the number of CIFAR100's classes per coarse class by changing `num_fine_classes_per_coarse_class`.
