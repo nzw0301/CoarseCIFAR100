@@ -43,7 +43,7 @@ print(training_._dataset.class_to_idx)
 
 The following transfrom class provides the same feature above:
 
-```
+```python
 import numpy as np
 
 from coarse_cifar100 import TransformCIFAR100TOCoarseCIFAR100
